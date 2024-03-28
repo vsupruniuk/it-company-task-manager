@@ -15,6 +15,7 @@ pep8-naming==0.13.3
 platformdirs==4.2.0
 pycodestyle==2.11.1
 pyflakes==3.2.0
+python-dotenv==1.0.1
 setuptools==69.2.0
 sqlparse==0.4.4
 tzdata==2024.1
