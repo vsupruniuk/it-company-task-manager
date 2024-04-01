@@ -18,4 +18,4 @@ class Team(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return f"Team: {self.name} (team lead: {self.team_lead})"
+        return f"Team: {self.name}"

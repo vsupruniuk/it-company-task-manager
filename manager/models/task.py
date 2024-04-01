@@ -32,6 +32,5 @@ class Task(models.Model):
 
     def __str__(self) -> str:
         return (
-            f"Task: {self.name} (priority: {self.priority}, deadline: {self.deadline}). "
-            f"Assigned to: {self.assignees}"
+            f"Task: {self.name} (priority: {self.priority}, deadline: {self.deadline})"
         )
