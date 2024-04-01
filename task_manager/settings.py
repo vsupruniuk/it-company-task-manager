@@ -25,6 +25,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -52,6 +53,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "task_manager.wsgi.application"
+
+AUTH_USER_MODEL = "manager.Worker"
+SESSION_COOKIE_AGE = os.getenv("SESSION_COOKIE_AGE")
+LOGIN_REDIRECT_URL = "/"
 
 DATABASES = {
     "default": {
