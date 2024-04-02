@@ -9,10 +9,11 @@ class Team(models.Model):
     team_lead = models.ForeignKey(
         to=AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
-        null=True,
         related_name="team_lead",
+        null=True,
+        blank=True,
     )
-    projects = models.ManyToManyField(to="Project", related_name="teams")
+    projects = models.ManyToManyField(to="Project", related_name="teams", blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

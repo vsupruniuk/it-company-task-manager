@@ -55,7 +55,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "task_manager.wsgi.application"
 
 AUTH_USER_MODEL = "manager.Worker"
-SESSION_COOKIE_AGE = os.getenv("SESSION_COOKIE_AGE")
+SESSION_COOKIE_AGE = int(os.getenv("SESSION_COOKIE_AGE"))
 LOGIN_REDIRECT_URL = "/"
 
 DATABASES = {
