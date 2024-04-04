@@ -15,4 +15,6 @@ class Project(models.Model):
         indexes = [models.Index(fields=["name"])]
 
     def __str__(self) -> str:
-        return f"Project: {self.name} (budget: {self.budget}, start date: {self.start_date})"
+        date = self.start_date.strftime("%Y-%m-%d")
+
+        return f"Project: {self.name} (budget: {self.budget}, start date: {date})"

@@ -35,6 +35,6 @@ class Task(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return (
-            f"Task: {self.name} (priority: {self.priority}, deadline: {self.deadline})"
-        )
+        date = self.deadline.strftime("%Y-%m-%d")
+
+        return f"Task: {self.name} (priority: {self.priority}, deadline: {date})"

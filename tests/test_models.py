@@ -54,9 +54,11 @@ class ModelTests(TestCase):
             deadline=datetime(2024, 1, 10),
         )
 
+        date = task.deadline.strftime("%Y-%m-%d")
+
         self.assertEqual(
             str(task),
-            f"Task: {task.name} (priority: {task.priority}, deadline: {task.deadline})",
+            f"Task: {task.name} (priority: {task.priority}, deadline: {date})",
         )
 
     def test_project_str(self) -> None:
@@ -66,9 +68,11 @@ class ModelTests(TestCase):
             budget=10_000_000,
         )
 
+        date = project.start_date.strftime("%Y-%m-%d")
+
         self.assertEqual(
             str(project),
-            f"Project: {project.name} (budget: {project.budget}, start date: {project.start_date})",
+            f"Project: {project.name} (budget: {project.budget}, start date: {date})",
         )
 
     def test_team_str(self) -> None:

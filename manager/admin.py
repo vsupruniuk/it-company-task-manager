@@ -1,27 +1,28 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
+from manager.admin_filers import TeamListFilter, ProjectListFilter
 from manager.models import Position, TaskType, Tag, Worker, Task, Project, Team
 
 
 @admin.register(Position)
 class PositionAdmin(admin.ModelAdmin):
     list_display = ("name", "team")
-    list_filter = ("team",)
+    list_filter = (TeamListFilter,)
     search_fields = ("name",)
 
 
 @admin.register(TaskType)
 class TaskTypeAdmin(admin.ModelAdmin):
     list_display = ("name", "project")
-    list_filter = ("project",)
+    list_filter = (ProjectListFilter,)
     search_fields = ("name",)
 
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = ("name", "project")
-    list_filter = ("project",)
+    list_filter = (ProjectListFilter,)
     search_fields = ("name",)
 
 
@@ -33,6 +34,7 @@ class WorkerAdmin(UserAdmin):
         ("Additional Info", {"fields": ("team", "position")}),
     )
     add_fieldsets = UserAdmin.add_fieldsets + (
+        ("Personal Info", {"fields": ("first_name", "last_name", "email")}),
         ("Additional Info", {"fields": ("team", "position")}),
     )
 
@@ -53,7 +55,7 @@ class TaskAdmin(admin.ModelAdmin):
         "priority",
         "task_type",
         "reporter",
-        "project",
+        ProjectListFilter,
         "assignees",
         "tags",
     )
@@ -69,9 +71,6 @@ class ProjectAdmin(admin.ModelAdmin):
 
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "team_lead",
-    )
-    list_filter = ("team_lead", "projects")
+    list_display = ("name", "team_lead")
+    list_filter = ("team_lead", ProjectListFilter)
     search_fields = ("name",)
