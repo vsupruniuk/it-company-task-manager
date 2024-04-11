@@ -1736,7 +1736,7 @@ p.text-muted {
   padding-right: 40px;
 }
 .pcoded-header .mr-auto .dropdown-menu {
-  margin-left: -20px;
+  margin-left: 15px;
 }
 .pcoded-header .ml-auto {
   float: right;
@@ -1851,7 +1851,7 @@ p.text-muted {
   content: "\63";
   font-family: "pct";
   position: absolute;
-  left: -5px;
+  left: 30px;
   top: 60px;
   z-index: 1001;
   font-size: 40px;
@@ -1976,6 +1976,7 @@ p.text-muted {
   background: transparent;
 }
 .pcoded-header .dropdown.drp-user.show:before {
+  left: -5px;
   color: #04a9f5;
 }
 
