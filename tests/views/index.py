@@ -2,13 +2,35 @@ from datetime import datetime
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from django.urls import reverse
 
 from manager.models import Project, Task
 from manager.services import get_projects_with_tasks
 
 
-class GetProjectsWithTasksTests(TestCase):
+class PublicIndexViewTests(TestCase):
     def setUp(self) -> None:
+        self.url = reverse("manager:index")
+
+    def test_login_required(self) -> None:
+        res = self.client.get(self.url)
+
+        self.assertEqual(res.status_code, 302)
+        self.assertEqual(res.url, "/accounts/login/?next=/")
+
+
+class PrivateIndexViewTests(TestCase):
+    def setUp(self) -> None:
+        self.url = reverse("manager:index")
+        self.user = get_user_model().objects.create_user(
+            first_name="Admin",
+            last_name="User",
+            username="admin",
+            password="Qwerty12345!",
+        )
+
+        self.client.force_login(self.user)
+
         self.project_youtube = Project.objects.create(
             name="YouTube", start_date=datetime(2024, 1, 1), budget=100_000_000
         )
@@ -23,6 +45,9 @@ class GetProjectsWithTasksTests(TestCase):
         )
         self.project_whatsapp = Project.objects.create(
             name="WhatsApp", start_date=datetime(2024, 1, 1), budget=75_000_000
+        )
+        self.project_slack = Project.objects.create(
+            name="Slack", start_date=datetime(2024, 1, 1), budget=500_000_000
         )
 
         self.worker_tony = get_user_model().objects.create(
@@ -94,6 +119,28 @@ class GetProjectsWithTasksTests(TestCase):
             project=self.project_facebook,
             is_completed=True,
         )
+        self.task_whatsapp_deploy_db = Task.objects.create(
+            name="Deploy DB",
+            deadline=datetime(2024, 4, 15),
+            project=self.project_whatsapp,
+        )
+        self.task_whatsapp_create_design = Task.objects.create(
+            name="Create design",
+            deadline=datetime(2024, 4, 15),
+            project=self.project_whatsapp,
+            is_completed=True,
+        )
+        self.task_slack_deploy_db = Task.objects.create(
+            name="Deploy DB",
+            deadline=datetime(2024, 4, 15),
+            project=self.project_slack,
+        )
+        self.task_slack_create_design = Task.objects.create(
+            name="Create design",
+            deadline=datetime(2024, 4, 15),
+            project=self.project_slack,
+            is_completed=True,
+        )
 
         self.task_youtube_deploy_db.assignees.set((self.worker_tony,))
         self.task_youtube_create_design.assignees.set((self.worker_tony,))
@@ -107,64 +154,34 @@ class GetProjectsWithTasksTests(TestCase):
         self.task_facebook_deploy_db.assignees.set((self.worker_steve,))
         self.task_facebook_create_design.assignees.set((self.worker_steve,))
 
-    def test_each_project_has_only_own_tasks(self) -> None:
+        self.task_whatsapp_deploy_db.assignees.set((self.worker_steve,))
+        self.task_whatsapp_create_design.assignees.set((self.worker_steve,))
+
+        self.task_slack_deploy_db.assignees.set((self.worker_tony,))
+        self.task_slack_create_design.assignees.set((self.worker_tony,))
+
+    def test_should_display_list_of_projects_with_tasks(self) -> None:
         projects = get_projects_with_tasks(None)
 
-        for project in projects:
-            for task in project.tasks.all():
-                self.assertEqual(task.project.id, project.id)
+        res = self.client.get(self.url)
 
-    def test_should_count_total_tasks_for_each_project(self) -> None:
-        total_tasks = 2
+        self.assertEqual(list(res.context["page_obj"]), list(projects)[:5])
 
+    def test_should_display_list_of_projects_with_pagination(self) -> None:
         projects = get_projects_with_tasks(None)
 
-        for project in projects:
-            self.assertEqual(project.total_tasks, total_tasks)
+        res = self.client.get(self.url + "?page=2")
 
-    def test_should_count_completed_tasks_count_for_each_project(self) -> None:
-        completed_tasks_count = 1
+        self.assertEqual(list(res.context["page_obj"]), list(projects)[5:])
 
-        projects = get_projects_with_tasks(None)
-
-        for project in projects:
-            self.assertEqual(project.completed_tasks_count, completed_tasks_count)
-
-    def test_should_count_uncompleted_tasks_count_for_each_project(self) -> None:
-        uncompleted_tasks_count = 1
-
-        projects = get_projects_with_tasks(None)
-
-        for project in projects:
-            self.assertEqual(project.uncompleted_tasks_count, uncompleted_tasks_count)
-
-    def test_should_count_completed_tasks_percentage_for_each_project(self) -> None:
-        completed_tasks_percentage = 50
-
-        projects = get_projects_with_tasks(None)
-
-        for project in projects:
-            self.assertEqual(
-                project.completed_tasks_percentage, completed_tasks_percentage
-            )
-
-    def test_should_count_uncompleted_tasks_percentage_for_each_project(self) -> None:
-        uncompleted_tasks_percentage = 50
-
-        projects = get_projects_with_tasks(None)
-
-        for project in projects:
-            self.assertEqual(
-                project.uncompleted_tasks_percentage, uncompleted_tasks_percentage
-            )
-
-    def test_should_return_projects_with_one_or_more_tasks(self) -> None:
-        projects = get_projects_with_tasks(None)
-
-        self.assertNotIn(self.project_whatsapp, projects)
-
-    def test_should_filter_projects_by_name_if_name_provided(self) -> None:
+    def test_should_display_list_of_projects_with_search(self) -> None:
         projects = get_projects_with_tasks("you")
 
-        self.assertEqual(len(projects), 1)
-        self.assertEqual(projects[0].name, self.project_youtube.name)
+        res = self.client.get(self.url + "?project-name=you")
+
+        self.assertEqual(list(res.context["page_obj"]), list(projects)[:1])
+
+    def test_should_use_proper_template(self) -> None:
+        res = self.client.get(self.url)
+
+        self.assertTemplateUsed(res, "manager/index.html")
