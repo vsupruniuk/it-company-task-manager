@@ -23,7 +23,7 @@ def index(request: HttpRequest) -> HttpResponse:
         projects = paginator.page(paginator.num_pages)
 
     context = {
-        "segment": "index",
+        "segment": ["index", "search"],
         "page_obj": projects,
         "is_paginated": paginator.num_pages > 1,
         "search_value": project_name if project_name else "",

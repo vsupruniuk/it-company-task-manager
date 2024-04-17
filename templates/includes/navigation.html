@@ -19,23 +19,25 @@
 
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <form method="get" action="">
-          <div class="input-group mb-3">
-            <input
-                type="text"
-                class="form-control"
-                placeholder="Search projects"
-                name="project-name"
-                value="{{ search_value }}"
-            >
+      {% if "search" in segment %}
+        <li class="nav-item">
+          <form method="get" action="">
+            <div class="input-group mb-3">
+              <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search projects"
+                  name="project-name"
+                  value="{{ search_value }}"
+              >
 
-            <div class="input-group-append">
-              <button class="btn btn-primary" type="submit">Search</button>
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+              </div>
             </div>
-          </div>
-        </form>
-      </li>
+          </form>
+        </li>
+      {% endif %}
     </ul>
 
     <ul class="navbar-nav ml-auto">

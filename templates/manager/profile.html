@@ -1,1 +1,95 @@
-<h1>Profile</h1>
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block breadcrumbs %}{% endblock breadcrumbs %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Edit Info</h5>
+        </div>
+
+        <div class="card-block">
+          <form method="post" action="">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-sm-12 mb-4">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+
+                  <input
+                      type="email"
+                      name="email"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter email"
+                      value="{{ user.email }}"
+                      required
+                  >
+                </div>
+              </div>
+
+              <div class="col-sm-6 mb-4">
+                <div class="form-group">
+                  <label for="fn">First Name</label>
+
+                  <input
+                      type="text"
+                      name="first_name"
+                      class="form-control"
+                      id="fn"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter first name"
+                      maxlength="150"
+                      value="{{ user.first_name }}"
+                  >
+                </div>
+              </div>
+
+              <div class="col-sm-6 mb-4">
+                <div class="form-group">
+                  <label for="ln">Last Name</label>
+
+                  <input
+                      type="text"
+                      name="last_name"
+                      class="form-control"
+                      id="ln"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter last name"
+                      maxlength="150"
+                      value="{{ user.last_name }}"
+                  >
+                </div>
+              </div>
+              <div class="col-sm-12 mb-4">
+                <div class="form-group">
+                  <label for="add">Username</label>
+
+                  <input
+                      type="text"
+                      name="username"
+                      class="form-control"
+                      id="add"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter username"
+                      maxlength="150"
+                      value="{{ user.username }}"
+                      required
+                  >
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
