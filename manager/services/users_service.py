@@ -31,7 +31,7 @@ def update_user(
 
 
 def get_user_tasks(
-    user: get_user_model(), name: str = None, is_completed: bool | None = None
+    user: get_user_model(), name: str | None = None, is_completed: bool | None = None
 ) -> QuerySet[Task]:
     tasks = (
         Task.objects.filter(assignees__in=[user])

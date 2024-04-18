@@ -4,7 +4,7 @@ from django.test import TestCase
 from manager.services import update_user
 
 
-class GetUserTests(TestCase):
+class UpdateUserTests(TestCase):
     def setUp(self) -> None:
         self.worker_tony = get_user_model().objects.create(
             first_name="Tony",
