@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
@@ -5,6 +6,7 @@ from django.shortcuts import render
 from manager.services import get_user_tasks
 
 
+@login_required
 def my_tasks(request: HttpRequest) -> HttpResponse:
     task_name = request.GET.get("task-name")
     is_completed = (
