@@ -38,19 +38,3 @@ class PrivateProfileViewTests(TestCase):
         res = self.client.get(self.url)
 
         self.assertTemplateUsed(res, "manager/profile.html")
-
-    # @patch("manager.services.update_user")
-    # def test_should_be_possible_to_send_form_with_updated_user_data(
-    #     self, mock_update_user: MagicMock
-    # ) -> None:
-    #     post_data = {
-    #         "first_name": "Bruce",
-    #         "last_name": "Banner",
-    #         "username": "b.banner",
-    #         "email": "bruce@avengers.com",
-    #     }
-    #
-    #     res = self.client.post(self.url, data=post_data)
-    #
-    #     self.assertEqual(res.status_code, 200)
-    #     mock_update_user.assert_called_once()

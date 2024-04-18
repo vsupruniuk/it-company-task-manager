@@ -9,6 +9,7 @@ from manager.views import (
     ProjectTaskListView,
     ProjectTaskUpdateView,
     ProjectTaskDeleteView,
+    ProjectTaskDetailView,
 )
 
 urlpatterns = [
@@ -19,6 +20,11 @@ urlpatterns = [
         "projects/<int:pk>/tasks",
         ProjectTaskListView.as_view(),
         name="project-task-list",
+    ),
+    path(
+        "projects/<int:pk>/tasks/<int:id>",
+        ProjectTaskDetailView.as_view(),
+        name="project-task-detail",
     ),
     path(
         "projects/<int:pk>/tasks/<int:id>/update",

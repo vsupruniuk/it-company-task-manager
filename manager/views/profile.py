@@ -12,10 +12,10 @@ def profile(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         user = update_user(
             request.user.id,
-            email=request.POST.get("email", None),
-            username=request.POST.get("username", None),
-            first_name=request.POST.get("first_name", None),
-            last_name=request.POST.get("last_name", None),
+            email=request.POST.get("email"),
+            username=request.POST.get("username"),
+            first_name=request.POST.get("first_name"),
+            last_name=request.POST.get("last_name"),
         )
 
     context = {

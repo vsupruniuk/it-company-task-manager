@@ -8,7 +8,7 @@ from manager.services import get_projects_with_tasks
 
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
-    project_name = request.GET.get("project-name", None)
+    project_name = request.GET.get("project-name")
 
     projects = get_projects_with_tasks(project_name)
 
@@ -27,6 +27,8 @@ def index(request: HttpRequest) -> HttpResponse:
         "page_obj": projects,
         "is_paginated": paginator.num_pages > 1,
         "search_value": project_name if project_name else "",
+        "search_name": "project-name",
+        "search_placeholder": "Search projects",
         "user": request.user,
     }
 

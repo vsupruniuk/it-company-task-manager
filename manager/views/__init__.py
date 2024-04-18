@@ -4,6 +4,7 @@ from .profile import profile
 from .project_list import ProjectListView
 
 from .project_task_list import ProjectTaskListView
+from .project_task_detail import ProjectTaskDetailView
 from .project_task_update import ProjectTaskUpdateView
 from .project_task_delete import ProjectTaskDeleteView
 

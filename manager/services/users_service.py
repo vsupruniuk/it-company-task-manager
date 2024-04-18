@@ -1,4 +1,7 @@
 from django.contrib.auth import get_user_model
+from django.db.models import QuerySet
+
+from manager.models import Task
 
 
 def update_user(
@@ -25,3 +28,21 @@ def update_user(
     user.save()
 
     return user
+
+
+def get_user_tasks(
+    user: get_user_model(), name: str = None, is_completed: bool | None = None
+) -> QuerySet[Task]:
+    tasks = (
+        Task.objects.filter(assignees__in=[user])
+        .select_related("project")
+        .order_by("-updated_at")
+    )
+
+    if name:
+        tasks = tasks.filter(name__icontains=name)
+
+    if isinstance(is_completed, bool):
+        tasks = tasks.filter(is_completed=is_completed)
+
+    return tasks
