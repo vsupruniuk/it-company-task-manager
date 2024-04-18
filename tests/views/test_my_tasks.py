@@ -140,6 +140,24 @@ class PrivateIndexViewTests(TestCase):
 
         self.assertEqual(list(res.context["page_obj"]), list(tasks)[:1])
 
+    def test_should_display_list_of_completed_tasks_if_is_completed_is_true(
+        self,
+    ) -> None:
+        tasks = get_user_tasks(self.user, is_completed=True)
+
+        res = self.client.get(self.url + "?is_completed=True")
+
+        self.assertEqual(list(res.context["page_obj"]), list(tasks)[:10])
+
+    def test_should_display_list_of_not_completed_tasks_if_is_completed_is_false(
+        self,
+    ) -> None:
+        tasks = get_user_tasks(self.user, is_completed=False)
+
+        res = self.client.get(self.url + "?is_completed=False")
+
+        self.assertEqual(list(res.context["page_obj"]), list(tasks)[:10])
+
     def test_should_use_proper_template(self) -> None:
         res = self.client.get(self.url)
 
