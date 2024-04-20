@@ -11,6 +11,15 @@ from django.db.models.functions import Round
 from manager.models import Project, Task
 
 
+def get_all_projects(name: str | None = None) -> QuerySet[Project]:
+    projects = Project.objects.all()
+
+    if name:
+        projects = projects.filter(name__icontains=name)
+
+    return projects
+
+
 def get_projects_with_tasks(project_name: str | None) -> QuerySet[Project]:
     projects = (
         Project.objects.prefetch_related(

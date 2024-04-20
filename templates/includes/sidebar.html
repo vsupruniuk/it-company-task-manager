@@ -30,7 +30,7 @@
           </a>
         </li>
 
-        <li class="nav-item {% if 'todo' in segment %}active{% endif %}">
+        <li class="nav-item {% if 'projects' in segment %}active{% endif %}">
           <a href="{% url "manager:project-list" %}" class="nav-link ">
             <span class="pcoded-micon">
               <i class="fa-solid fa-project-diagram" style="color: #a9b7d0;"></i>
@@ -40,7 +40,7 @@
           </a>
         </li>
 
-        <li class="nav-item {% if 'todo' in segment %}active{% endif %}">
+        <li class="nav-item {% if 'teams' in segment %}active{% endif %}">
           <a href="{% url "manager:team-list" %}" class="nav-link ">
             <span class="pcoded-micon">
               <i class="fa-solid fa-people-group" style="color: #a9b7d0;"></i>
@@ -50,7 +50,7 @@
           </a>
         </li>
 
-        <li class="nav-item {% if 'todo' in segment %}active{% endif %}">
+        <li class="nav-item {% if 'workers' in segment %}active{% endif %}">
           <a href="{% url "manager:worker-list" %}" class="nav-link ">
             <span class="pcoded-micon">
               <i class="fa-solid fa-user" style="color: #a9b7d0;"></i>
