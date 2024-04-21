@@ -16,14 +16,14 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
         search_value = self.request.GET.get("project_name")
 
         context["segment"] = ["projects", "search"]
-        context["search_name"] = "project_name"
+        context["search_name"] = "project-name"
         context["search_value"] = search_value if search_value else ""
         context["search_placeholder"] = "Search projects"
 
         return context
 
     def get_queryset(self) -> QuerySet[Project]:
-        project_name = self.request.GET.get("project_name")
+        project_name = self.request.GET.get("project-name")
         queryset = get_all_projects(project_name)
 
         return queryset

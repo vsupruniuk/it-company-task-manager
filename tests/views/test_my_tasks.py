@@ -5,10 +5,10 @@ from django.test import TestCase
 from django.urls import reverse
 
 from manager.models import Project, Task
-from manager.services import get_projects_with_tasks, get_user_tasks
+from manager.services import get_user_tasks
 
 
-class PublicIndexViewTests(TestCase):
+class PublicMyTasksViewTests(TestCase):
     def setUp(self) -> None:
         self.url = reverse("manager:my-tasks")
 
@@ -19,7 +19,7 @@ class PublicIndexViewTests(TestCase):
         self.assertEqual(res.url, "/accounts/login/?next=/my-tasks/")
 
 
-class PrivateIndexViewTests(TestCase):
+class PrivateMyTasksViewTests(TestCase):
     def setUp(self) -> None:
         self.url = reverse("manager:my-tasks")
         self.user = get_user_model().objects.create_user(
