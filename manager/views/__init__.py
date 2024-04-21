@@ -1,5 +1,6 @@
 from .index import index
 from .profile import profile
+from .my_tasks import my_tasks
 
 from .projects.project_list import ProjectListView
 from .projects.project_detail import ProjectDetailView
@@ -16,4 +17,6 @@ from .team_list import TeamListView
 
 from .worker_list import WorkerListView
 
-from .my_tasks import my_tasks
+from .tag_list import TagListView
+
+from .task_type_list import TaskTypeListView
