@@ -11,7 +11,7 @@ class PublicProjectUpdateTests(TestCase):
     def setUp(self) -> None:
         self.url = reverse("manager:project-update", kwargs={"pk": 1})
 
-    def test_project_create_login_required(self) -> None:
+    def test_project_update_login_required(self) -> None:
         res = self.client.get(self.url)
 
         self.assertEqual(res.status_code, 302)
@@ -38,7 +38,7 @@ class PrivateProjectUpdateTests(TestCase):
 
         self.url = reverse("manager:project-update", kwargs={"pk": self.project.pk})
 
-    def test_should_create_project_from_user_data(self) -> None:
+    def test_should_update_project_from_user_data(self) -> None:
         form_data = {
             "name": "Twitch",
             "description": "Live streaming platform",
@@ -48,12 +48,12 @@ class PrivateProjectUpdateTests(TestCase):
 
         self.client.post(self.url, data=form_data)
 
-        created_project = Project.objects.get(name="Twitch")
+        updated_project = Project.objects.get(name="Twitch")
 
-        self.assertEqual(created_project.name, form_data.get("name"))
-        self.assertEqual(created_project.description, form_data.get("description"))
-        self.assertEqual(created_project.start_date, form_data.get("start_date"))
-        self.assertEqual(created_project.budget, form_data.get("budget"))
+        self.assertEqual(updated_project.name, form_data.get("name"))
+        self.assertEqual(updated_project.description, form_data.get("description"))
+        self.assertEqual(updated_project.start_date, form_data.get("start_date"))
+        self.assertEqual(updated_project.budget, form_data.get("budget"))
 
     def test_should_use_proper_template(self) -> None:
         res = self.client.get(self.url)

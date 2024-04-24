@@ -1,1 +1,21 @@
-<h1>Project confirm delete</h1>
+{% extends 'layouts/base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card Recent-Users p-3">
+        <h2 class="mb-5">Delete project {{ project.name }} with all related tasks, tags and task types?</h2>
+        <form action="" method="post">
+          {% csrf_token %}
+
+          <button type="submit" class="btn btn-danger">Yes</button>
+          <a href="{% url "manager:project-list" %}" class="btn btn-outline-primary">No</a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
