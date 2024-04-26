@@ -13,7 +13,7 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs) -> dict:
         context = super(ProjectListView, self).get_context_data(**kwargs)
-        search_value = self.request.GET.get("project_name")
+        search_value = self.request.GET.get("project-name")
 
         context["segment"] = ["projects", "search"]
         context["search_name"] = "project-name"

@@ -19,4 +19,4 @@ from .worker_list import WorkerListView
 
 from .tag_list import TagListView
 
-from .task_type_list import TaskTypeListView
+from .task_types.task_type_list import TaskTypeListView
