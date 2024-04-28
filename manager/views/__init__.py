@@ -18,6 +18,7 @@ from .team_list import TeamListView
 from .worker_list import WorkerListView
 
 from .tags.tag_list import TagListView
+from .tags.tag_detail import TagDetailView
 
 from .task_types.task_type_list import TaskTypeListView
 from .task_types.task_type_detail import TaskTypeDetailView

@@ -4,21 +4,21 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
-from manager.models import Project, TaskType
+from manager.models import Project, Tag
 
 
-class PublicTaskTypeDetailTests(TestCase):
+class PublicTagDetailTests(TestCase):
     def setUp(self) -> None:
-        self.url = reverse("manager:task-type-detail", kwargs={"pk": 1, "id": 1})
+        self.url = reverse("manager:tag-detail", kwargs={"pk": 1, "id": 1})
 
-    def test_task_type_detail_login_required(self) -> None:
+    def test_tag_detail_login_required(self) -> None:
         res = self.client.get(self.url)
 
         self.assertEqual(res.status_code, 302)
-        self.assertEqual("/accounts/login/?next=/projects/1/task-types/1", res.url)
+        self.assertEqual("/accounts/login/?next=/projects/1/tags/1", res.url)
 
 
-class PrivateTaskTypeDetailTests(TestCase):
+class PrivateTagTypeDetailTests(TestCase):
     def setUp(self) -> None:
         self.project = Project.objects.create(
             name="YouTube",
@@ -26,11 +26,11 @@ class PrivateTaskTypeDetailTests(TestCase):
             start_date=datetime(2024, 1, 1),
             budget=100_000_000,
         )
-        self.task_type = TaskType.objects.create(name="Feature", project=self.project)
+        self.tag = Tag.objects.create(name="backend", project=self.project)
 
         self.url = reverse(
-            "manager:task-type-detail",
-            kwargs={"pk": self.project.pk, "id": self.task_type.id},
+            "manager:tag-detail",
+            kwargs={"pk": self.project.pk, "id": self.tag.id},
         )
 
         self.user = get_user_model().objects.create_user(
@@ -42,13 +42,13 @@ class PrivateTaskTypeDetailTests(TestCase):
 
         self.client.force_login(self.user)
 
-    def test_should_display_task_type_details(self) -> None:
+    def test_should_display_tag_details(self) -> None:
         res = self.client.get(self.url)
 
-        self.assertContains(res, self.task_type.name)
-        self.assertContains(res, self.task_type.project.name)
+        self.assertContains(res, self.tag.name)
+        self.assertContains(res, self.tag.project.name)
 
     def test_should_use_proper_template(self) -> None:
         res = self.client.get(self.url)
 
-        self.assertTemplateUsed(res, "manager/task_type_detail.html")
+        self.assertTemplateUsed(res, "manager/tag_detail.html")

@@ -10,3 +10,7 @@ def get_project_tags(project_id: int, tag_name: str | None = None) -> QuerySet[T
         queryset = queryset.filter(name__icontains=tag_name)
 
     return queryset
+
+
+def get_tag_with_project(tag_id: int) -> Tag:
+    return Tag.objects.select_related("project").get(id=tag_id)
