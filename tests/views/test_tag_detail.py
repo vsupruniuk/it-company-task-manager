@@ -15,7 +15,7 @@ class PublicTagDetailTests(TestCase):
         res = self.client.get(self.url)
 
         self.assertEqual(res.status_code, 302)
-        self.assertEqual("/accounts/login/?next=/projects/1/tags/1", res.url)
+        self.assertEqual("/accounts/login/?next=/projects/1/tags/1/", res.url)
 
 
 class PrivateTagTypeDetailTests(TestCase):

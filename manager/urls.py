@@ -10,6 +10,7 @@ from manager.views import (
     ProjectDeleteView,
     TagListView,
     TagDetailView,
+    TagCreateView,
     TaskTypeListView,
     TaskTypeDetailView,
     TaskTypeCreateView,
@@ -55,30 +56,33 @@ urlpatterns = [
         ProjectTaskDeleteView.as_view(),
         name="project-task-delete",
     ),
-    path("projects/<int:pk>/tags", TagListView.as_view(), name="tag-list"),
-    path("projects/<int:pk>/tags/<int:id>", TagDetailView.as_view(), name="tag-detail"),
+    path("projects/<int:pk>/tags/", TagListView.as_view(), name="tag-list"),
     path(
-        "projects/<int:pk>/task-types/create",
+        "projects/<int:pk>/tags/<int:id>/", TagDetailView.as_view(), name="tag-detail"
+    ),
+    path("projects/<int:pk>/tags/create/", TagCreateView.as_view(), name="tag-create"),
+    path(
+        "projects/<int:pk>/task-types/create/",
         TaskTypeCreateView.as_view(),
         name="task-type-create",
     ),
     path(
-        "projects/<int:pk>/task-types",
+        "projects/<int:pk>/task-types/",
         TaskTypeListView.as_view(),
         name="task-type-list",
     ),
     path(
-        "projects/<int:pk>/task-types/<int:id>",
+        "projects/<int:pk>/task-types/<int:id>/",
         TaskTypeDetailView.as_view(),
         name="task-type-detail",
     ),
     path(
-        "projects/<int:pk>/task-types/<int:id>/update",
+        "projects/<int:pk>/task-types/<int:id>/update/",
         TaskTypeUpdateView.as_view(),
         name="task-type-update",
     ),
     path(
-        "projects/<int:pk>/task-types/<int:id>/delete",
+        "projects/<int:pk>/task-types/<int:id>/delete/",
         TaskTypeDeleteView.as_view(),
         name="task-type-delete",
     ),

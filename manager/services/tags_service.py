@@ -14,3 +14,7 @@ def get_project_tags(project_id: int, tag_name: str | None = None) -> QuerySet[T
 
 def get_tag_with_project(tag_id: int) -> Tag:
     return Tag.objects.select_related("project").get(id=tag_id)
+
+
+def create_tag_for_project(project_id: int, name: str) -> None:
+    Tag.objects.create(name=name, project_id=project_id)

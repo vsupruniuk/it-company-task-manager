@@ -11,11 +11,13 @@ class PublicTaskTypeCreateTests(TestCase):
     def setUp(self) -> None:
         self.url = reverse("manager:task-type-create", kwargs={"pk": 1})
 
-    def test_project_detail_login_required(self) -> None:
+    def test_task_type_create_login_required(self) -> None:
         res = self.client.get(self.url)
 
         self.assertEqual(res.status_code, 302)
-        self.assertEqual("/accounts/login/?next=/projects/1/task-types/create", res.url)
+        self.assertEqual(
+            "/accounts/login/?next=/projects/1/task-types/create/", res.url
+        )
 
 
 class PrivateTaskTypeCreateTests(TestCase):

@@ -16,7 +16,7 @@ class PublicTaskTypesViewTests(TestCase):
         res = self.client.get(self.url)
 
         self.assertEqual(res.status_code, 302)
-        self.assertEqual(res.url, "/accounts/login/?next=/projects/1/task-types")
+        self.assertEqual(res.url, "/accounts/login/?next=/projects/1/task-types/")
 
 
 class PrivateTaskTypesViewTests(TestCase):
