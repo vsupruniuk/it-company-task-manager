@@ -22,3 +22,4 @@ from .tag_list import TagListView
 from .task_types.task_type_list import TaskTypeListView
 from .task_types.task_type_detail import TaskTypeDetailView
 from .task_types.task_type_create import TaskTypeCreateView
+from .task_types.task_type_update import TaskTypeUpdateView
