@@ -5,7 +5,7 @@
 
   <div class="row">
     <div class="col-xl-12">
-      <a href="" class="btn btn-primary mb-3">Add task type</a>
+      <a href="{% url "manager:task-type-create" pk=project_id %}" class="btn btn-primary mb-3">Add task type</a>
 
       <div class="card Recent-Users">
         <div class="card-block px-0 py-3">
@@ -39,7 +39,7 @@
 
                   <td>
                     <a
-                        href="{% url "manager:task-type-detail" pk="1" id=task_type.id %}"
+                        href="{% url "manager:task-type-detail" pk=project_id id=task_type.id %}"
                         class="label theme-bg text-white f-12"
                     >Details</a>
 

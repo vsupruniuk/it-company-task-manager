@@ -20,6 +20,7 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
         context["search_name"] = "task-type-name"
         context["search_value"] = search_value if search_value else ""
         context["search_placeholder"] = "Search task types"
+        context["project_id"] = self.kwargs["pk"]
 
         return context
 
