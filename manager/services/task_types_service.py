@@ -12,3 +12,7 @@ def get_project_task_types(
         queryset = queryset.filter(name__icontains=task_name)
 
     return queryset
+
+
+def get_task_type_with_project(task_type_id: int) -> TaskType:
+    return TaskType.objects.select_related("project").get(id=task_type_id)

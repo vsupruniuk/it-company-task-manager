@@ -21,25 +21,25 @@
               </thead>
 
               <tbody>
-              {% for task in task_type_list %}
+              {% for task_type in task_type_list %}
                 <tr class="unread">
                   <td>
                     <h6 class="m-0">
-                      {{ task.name }}
+                      {{ task_type.name }}
                     </h6>
                   </td>
 
                   <td>
-                    <h6 class="mb-1">{{ task.project.name }}</h6>
+                    <h6 class="mb-1">{{ task_type.project.name }}</h6>
                   </td>
 
                   <td>
-                    <h6 class="text-muted">{{ task.updated_at }}</h6>
+                    <h6 class="text-muted">{{ task_type.updated_at }}</h6>
                   </td>
 
                   <td>
                     <a
-                        href=""
+                        href="{% url "manager:task-type-detail" pk="1" id=task_type.id %}"
                         class="label theme-bg text-white f-12"
                     >Details</a>
 
