@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from manager.models import Project, TaskType
-from manager.services import get_all_projects, get_project_task_types
+from manager.services import get_project_task_types
 
 
 class PublicTaskTypesViewTests(TestCase):
@@ -19,7 +19,7 @@ class PublicTaskTypesViewTests(TestCase):
         self.assertEqual(res.url, "/accounts/login/?next=/projects/1/task-types")
 
 
-class PrivateProjectsViewTests(TestCase):
+class PrivateTaskTypesViewTests(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
             first_name="Admin",
@@ -64,8 +64,8 @@ class PrivateProjectsViewTests(TestCase):
 
         self.assertEqual(list(res.context["task_type_list"]), list(task_types)[10:])
 
-    def test_should_display_list_of_tasks_with_search(self) -> None:
-        task_types = get_project_task_types(self.project.id, task_name="feat")
+    def test_should_display_list_of_task_types_with_search(self) -> None:
+        task_types = get_project_task_types(self.project.id, task_type_name="feat")
 
         res = self.client.get(self.url + "?task-type-name=feat")
 

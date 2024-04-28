@@ -26,7 +26,9 @@ class GetProjectTaskTypesTests(TestCase):
             self.assertEqual(task_type.project, self.project_youtube)
 
     def test_should_filter_task_types_by_name_if_name_provided(self) -> None:
-        task_types = get_project_task_types(self.project_youtube.id, task_name="fea")
+        task_types = get_project_task_types(
+            self.project_youtube.id, task_type_name="fea"
+        )
 
         for task_type in task_types:
             self.assertIn("fea", task_type.name.lower())

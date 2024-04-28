@@ -27,4 +27,4 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self) -> QuerySet[TaskType]:
         search_value = self.request.GET.get("task-type-name")
 
-        return get_project_task_types(self.kwargs["pk"], task_name=search_value)
+        return get_project_task_types(self.kwargs["pk"], task_type_name=search_value)

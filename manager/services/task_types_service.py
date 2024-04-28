@@ -4,12 +4,12 @@ from manager.models import TaskType
 
 
 def get_project_task_types(
-    project_id: int, task_name: str | None = None
+    project_id: int, task_type_name: str | None = None
 ) -> QuerySet[TaskType]:
     queryset = TaskType.objects.select_related("project").filter(project_id=project_id)
 
-    if task_name:
-        queryset = queryset.filter(name__icontains=task_name)
+    if task_type_name:
+        queryset = queryset.filter(name__icontains=task_type_name)
 
     return queryset
 
