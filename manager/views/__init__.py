@@ -20,6 +20,7 @@ from .worker_list import WorkerListView
 from .tags.tag_list import TagListView
 from .tags.tag_detail import TagDetailView
 from .tags.tag_create import TagCreateView
+from .tags.tag_update import TagUpdateView
 
 from .task_types.task_type_list import TaskTypeListView
 from .task_types.task_type_detail import TaskTypeDetailView
