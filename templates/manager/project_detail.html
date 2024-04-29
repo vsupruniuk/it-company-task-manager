@@ -21,7 +21,7 @@
         </p>
 
         <div>
-          <a href="{% url "manager:project-task-list" pk=project.pk %}" class="btn btn-outline-primary mt-5">Tasks</a>
+          <a href="{% url "manager:task-list" pk=project.pk %}" class="btn btn-outline-primary mt-5">Tasks</a>
           <a href="{% url "manager:tag-list" pk=project.pk %}" class="btn btn-outline-primary mt-5">Tags</a>
           <a href="{% url "manager:task-type-list" pk=project.pk %}" class="btn btn-outline-primary mt-5">Task types</a>
         </div>
