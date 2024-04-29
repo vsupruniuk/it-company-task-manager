@@ -41,9 +41,9 @@ class PrivateProjectDeleteTests(TestCase):
     def test_should_delete_project(self) -> None:
         self.client.post(self.url)
 
-        created_project = Project.objects.filter(name="YouTube")
+        project = Project.objects.filter(name="YouTube")
 
-        self.assertEqual(list(created_project), [])
+        self.assertEqual(list(project), [])
 
     def test_should_use_proper_template(self) -> None:
         res = self.client.get(self.url)
