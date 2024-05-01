@@ -9,6 +9,7 @@ from .projects.project_update import ProjectUpdateView
 from .projects.project_delete import ProjectDeleteView
 
 from .tasks.task_list import TaskListView
+from .tasks.task_create import TaskCreateView
 from .project_task_detail import ProjectTaskDetailView
 from .project_task_update import ProjectTaskUpdateView
 from .project_task_delete import ProjectTaskDeleteView

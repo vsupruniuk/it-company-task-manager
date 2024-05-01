@@ -21,6 +21,7 @@ from manager.views import (
     TeamListView,
     WorkerListView,
     TaskListView,
+    TaskCreateView,
     ProjectTaskDetailView,
     ProjectTaskUpdateView,
     ProjectTaskDeleteView,
@@ -42,6 +43,11 @@ urlpatterns = [
         "projects/<int:pk>/tasks/",
         TaskListView.as_view(),
         name="task-list",
+    ),
+    path(
+        "projects/<int:pk>/tasks/create/",
+        TaskCreateView.as_view(),
+        name="task-create",
     ),
     path(
         "projects/<int:pk>/tasks/<int:id>/",
