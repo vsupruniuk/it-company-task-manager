@@ -23,7 +23,7 @@ from manager.views import (
     TaskListView,
     TaskCreateView,
     TaskUpdateView,
-    ProjectTaskDetailView,
+    TaskDetailView,
     ProjectTaskDeleteView,
 )
 
@@ -51,8 +51,8 @@ urlpatterns = [
     ),
     path(
         "projects/<int:pk>/tasks/<int:id>/",
-        ProjectTaskDetailView.as_view(),
-        name="project-task-detail",
+        TaskDetailView.as_view(),
+        name="task-detail",
     ),
     path(
         "projects/<int:pk>/tasks/<int:id>/update/",
