@@ -22,8 +22,8 @@ from manager.views import (
     WorkerListView,
     TaskListView,
     TaskCreateView,
+    TaskUpdateView,
     ProjectTaskDetailView,
-    ProjectTaskUpdateView,
     ProjectTaskDeleteView,
 )
 
@@ -56,8 +56,8 @@ urlpatterns = [
     ),
     path(
         "projects/<int:pk>/tasks/<int:id>/update/",
-        ProjectTaskUpdateView.as_view(),
-        name="project-task-update",
+        TaskUpdateView.as_view(),
+        name="task-update",
     ),
     path(
         "projects/<int:pk>/tasks/<int:id>/delete/",

@@ -18,7 +18,7 @@ class PublicTagUpdateTests(TestCase):
         self.assertEqual("/accounts/login/?next=/projects/1/tags/1/update/", res.url)
 
 
-class PrivateTaskTypeUpdateTests(TestCase):
+class PrivateTagUpdateTests(TestCase):
     def setUp(self) -> None:
         self.project = Project.objects.create(
             name="YouTube",
@@ -27,11 +27,11 @@ class PrivateTaskTypeUpdateTests(TestCase):
             budget=100_000_000,
         )
 
-        self.task_type = Tag.objects.create(name="backend", project=self.project)
+        self.tag = Tag.objects.create(name="backend", project=self.project)
 
         self.url = reverse(
             "manager:tag-update",
-            kwargs={"pk": self.project.pk, "id": self.task_type.id},
+            kwargs={"pk": self.project.pk, "id": self.tag.id},
         )
 
         self.user = get_user_model().objects.create_user(
