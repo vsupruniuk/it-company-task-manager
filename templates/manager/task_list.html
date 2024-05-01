@@ -67,7 +67,7 @@
                     >Edit</a>
 
                     <a
-                        href=""
+                        href="{% url "manager:task-delete" pk=project_id id=task.id %}"
                         class="label theme-bg2 text-white f-12"
                     >Delete</a>
                   </td>

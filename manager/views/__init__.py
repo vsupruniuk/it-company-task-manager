@@ -12,7 +12,7 @@ from .tasks.task_list import TaskListView
 from .tasks.task_create import TaskCreateView
 from .tasks.task_update import TaskUpdateView
 from .tasks.task_detail import TaskDetailView
-from .project_task_delete import ProjectTaskDeleteView
+from .tasks.task_delete import TaskDeleteView
 
 from .team_list import TeamListView
 

@@ -24,7 +24,7 @@ from manager.views import (
     TaskCreateView,
     TaskUpdateView,
     TaskDetailView,
-    ProjectTaskDeleteView,
+    TaskDeleteView,
 )
 
 urlpatterns = [
@@ -61,8 +61,8 @@ urlpatterns = [
     ),
     path(
         "projects/<int:pk>/tasks/<int:id>/delete/",
-        ProjectTaskDeleteView.as_view(),
-        name="project-task-delete",
+        TaskDeleteView.as_view(),
+        name="task-delete",
     ),
     path("projects/<int:pk>/tags/", TagListView.as_view(), name="tag-list"),
     path(
