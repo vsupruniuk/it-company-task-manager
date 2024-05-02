@@ -14,9 +14,7 @@ from .tasks.task_update import TaskUpdateView
 from .tasks.task_detail import TaskDetailView
 from .tasks.task_delete import TaskDeleteView
 
-from .team_list import TeamListView
-
-from .worker_list import WorkerListView
+from .workers.worker_list import WorkerListView
 
 from .tags.tag_list import TagListView
 from .tags.tag_detail import TagDetailView
@@ -29,3 +27,5 @@ from .task_types.task_type_detail import TaskTypeDetailView
 from .task_types.task_type_create import TaskTypeCreateView
 from .task_types.task_type_update import TaskTypeUpdateView
 from .task_types.task_type_delete import TaskTypeDeleteView
+
+from .team_list import TeamListView
