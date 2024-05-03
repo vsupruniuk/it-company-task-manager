@@ -1,0 +1,22 @@
+{% extends 'layouts/base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card Recent-Users p-3">
+        <h3 class="text-center">{{ worker.username }}</h3>
+
+        <h5>First name: {{ worker.first_name }}</h5>
+        <h5>Last name: {{ worker.last_name }}</h5>
+        <h5>Email: {{ worker.email }}</h5>
+        <h5>Position: {{ worker.position.name }}</h5>
+        <h5>Team: {{ worker.team.name }}</h5>
+        <h5>Last login: {{ worker.last_login }}</h5>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

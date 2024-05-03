@@ -15,6 +15,7 @@ from .tasks.task_detail import TaskDetailView
 from .tasks.task_delete import TaskDeleteView
 
 from .workers.worker_list import WorkerListView
+from .workers.worker_detail import WorkerDetailView
 
 from .tags.tag_list import TagListView
 from .tags.tag_detail import TagDetailView
