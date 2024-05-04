@@ -10,4 +10,5 @@ class WorkerForm(UserCreationForm):
             "first_name",
             "last_name",
             "team",
+            "position",
         )
