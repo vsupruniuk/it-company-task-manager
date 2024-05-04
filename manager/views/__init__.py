@@ -18,6 +18,7 @@ from .workers.worker_list import WorkerListView
 from .workers.worker_detail import WorkerDetailView
 from .workers.worker_create import WorkerCreateView
 from .workers.worker_update import WorkerUpdateView
+from .workers.worker_delete import WorkerDeleteView
 
 from .tags.tag_list import TagListView
 from .tags.tag_detail import TagDetailView
