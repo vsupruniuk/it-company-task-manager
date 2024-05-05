@@ -17,3 +17,5 @@ from .tasks_service import get_full_task
 
 from .workers_service import get_workers
 from .workers_service import get_worker
+
+from .teams_service import get_teams
