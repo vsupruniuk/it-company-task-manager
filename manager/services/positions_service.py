@@ -12,3 +12,7 @@ def get_team_positions(
         queryset = queryset.filter(name__icontains=position_name)
 
     return queryset
+
+
+def get_position_with_team(position_id: int) -> Position:
+    return Position.objects.select_related("team").get(id=position_id)

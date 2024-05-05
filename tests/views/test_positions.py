@@ -17,7 +17,7 @@ class PublicPositionViewTests(TestCase):
         self.assertEqual(res.url, "/accounts/login/?next=/teams/1/positions/")
 
 
-class PrivateTagsViewTests(TestCase):
+class PrivatePositionViewTests(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
             first_name="Admin",

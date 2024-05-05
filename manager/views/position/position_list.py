@@ -19,6 +19,7 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
         context["search_name"] = "position-name"
         context["search_value"] = search_value if search_value else ""
         context["search_placeholder"] = "Search position"
+        context["team_id"] = self.kwargs["pk"]
 
         return context
 

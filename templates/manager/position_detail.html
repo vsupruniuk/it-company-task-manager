@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card Recent-Users p-3">
+        <h3 class="text-center">{{ position.name }}</h3>
+
+        <h5>Last update date: {{ position.updated_at }}</h5>
+        <h5 class="mb-5">Related team: {{ position.team.name }}</h5>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
