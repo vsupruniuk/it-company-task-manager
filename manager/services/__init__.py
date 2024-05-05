@@ -20,3 +20,5 @@ from .workers_service import get_worker
 
 from .teams_service import get_teams
 from .teams_service import get_team
+
+from .positions_service import get_team_positions
