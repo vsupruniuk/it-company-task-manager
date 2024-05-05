@@ -33,3 +33,4 @@ from .task_types.task_type_update import TaskTypeUpdateView
 from .task_types.task_type_delete import TaskTypeDeleteView
 
 from .teams.team_list import TeamListView
+from .teams.team_create import TeamCreateView
