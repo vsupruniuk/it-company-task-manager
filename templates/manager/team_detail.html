@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card Recent-Users p-3">
+        <h3 class="text-center">{{ team.name }}</h3>
+
+        <h5>Team Lead: {{ team.team_lead.username }}</h5>
+        <h5>
+          Projects:
+          {% for project in team.projects.all %}
+            {% if forloop.last %}
+              <span>{{ project.name }}</span>
+            {% else %}
+              <span>{{ project.name }},</span>
+            {% endif %}
+          {% endfor %}
+        </h5>
+
+        <div>
+          <a href="" class="btn btn-outline-primary mt-5">Positions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
