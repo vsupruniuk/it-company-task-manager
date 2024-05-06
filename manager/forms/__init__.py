@@ -4,3 +4,4 @@ from .tag_form import TagForm
 from .task_form import TaskForm
 from .worker_form import WorkerForm
 from .team_form import TeamForm
+from .positin_form import PositionForm

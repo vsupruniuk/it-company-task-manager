@@ -23,3 +23,4 @@ from .teams_service import get_team
 
 from .positions_service import get_team_positions
 from .positions_service import get_position_with_team
+from .positions_service import create_position_for_team

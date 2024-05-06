@@ -16,3 +16,7 @@ def get_team_positions(
 
 def get_position_with_team(position_id: int) -> Position:
     return Position.objects.select_related("team").get(id=position_id)
+
+
+def create_position_for_team(team_id: int, name: str) -> None:
+    Position.objects.create(name=name, team_id=team_id)

@@ -40,3 +40,4 @@ from .teams.team_delete import TeamDeleteView
 
 from .position.position_list import PositionListView
 from .position.position_detail import PositionDetailView
+from .position.position_create import PositionCreateView
