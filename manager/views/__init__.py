@@ -42,3 +42,4 @@ from .position.position_list import PositionListView
 from .position.position_detail import PositionDetailView
 from .position.position_create import PositionCreateView
 from .position.position_update import PositionUpdateView
+from .position.position_delete import PositionDeleteView
