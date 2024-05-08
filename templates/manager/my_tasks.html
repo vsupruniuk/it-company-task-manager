@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block content %}
-
   <div class="row">
     <div class="col-xl-12">
       <div class="btn-group mb-4" role="group" aria-label="Basic outlined example">
@@ -32,8 +31,9 @@
       <div class="card Recent-Users">
         <div class="card-block px-0 py-3">
           <div class="table-responsive">
-            <table class="table table-hover">
-              <thead>
+            {% if page_obj %}
+              <table class="table table-hover">
+                <thead>
                 <tr>
                   <td>Project</td>
                   <td>Task</td>
@@ -41,9 +41,9 @@
                   <td>Completed</td>
                   <td>Actions</td>
                 </tr>
-              </thead>
+                </thead>
 
-              <tbody>
+                <tbody>
                 {% for task in page_obj %}
                   <tr class="unread">
                     <td>
@@ -74,28 +74,30 @@
 
                     <td>
                       <a
-                          href="{% url "manager:task-detail" pk=task.project.pk id=task.id %}"
+                          href="{% url "manager:task-detail" pk=task.pk %}"
                           class="label theme-bg text-white f-12"
                       >Details</a>
 
                       <a
-                          href="{% url "manager:task-update" pk=task.project.pk id=task.id %}"
+                          href="{% url "manager:task-update" pk=task.pk %}"
                           class="label theme-bg text-white f-12"
                       >Edit</a>
 
                       <a
-                          href="{% url "manager:task-delete" pk=task.project.pk id=task.id %}"
+                          href="{% url "manager:task-delete" pk=task.pk %}"
                           class="label theme-bg2 text-white f-12"
                       >Delete</a>
                     </td>
                   </tr>
                 {% endfor %}
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            {% else %}
+              <h3 class="text-center">No tasks</h3>
+            {% endif %}
           </div>
         </div>
       </div>
     </div>
   </div>
-
 {% endblock content %}

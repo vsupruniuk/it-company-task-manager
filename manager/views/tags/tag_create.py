@@ -5,13 +5,19 @@ from django.views import generic
 
 from manager.forms import TagForm
 from manager.models import Tag
-from manager.services import create_tag_for_project
+from manager.services import create_tag_for_project, get_project_by_id
 
 
 class TagCreateView(LoginRequiredMixin, generic.CreateView):
     model = Tag
-    template_name = "manager/tag_form.html"
     form_class = TagForm
+
+    def get_context_data(self, *, object_list=None, **kwargs) -> dict:
+        context = super(TagCreateView, self).get_context_data(**kwargs)
+
+        context["project"] = get_project_by_id(self.kwargs["pk"])
+
+        return context
 
     def get_success_url(self) -> str:
         project_pk = self.kwargs["pk"]

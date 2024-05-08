@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block content %}
-
   <div class="row">
     <div class="col-xl-12">
       <div class="card Recent-Users p-3">
@@ -16,7 +15,8 @@
         <h5>Team: {{ worker.team.name }}</h5>
         <h5>Last login: {{ worker.last_login }}</h5>
       </div>
+
+      <a href="{% url "manager:worker-list" %}" class="btn btn-danger">Back</a>
     </div>
   </div>
-
 {% endblock content %}

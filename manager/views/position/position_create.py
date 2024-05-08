@@ -5,12 +5,19 @@ from django.views import generic
 
 from manager.forms import PositionForm
 from manager.models import Position
-from manager.services import create_position_for_team
+from manager.services import create_position_for_team, get_team
 
 
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
     form_class = PositionForm
+
+    def get_context_data(self, *, object_list=None, **kwargs) -> dict:
+        context = super(PositionCreateView, self).get_context_data(**kwargs)
+
+        context["team"] = get_team(self.kwargs["pk"])
+
+        return context
 
     def get_success_url(self) -> str:
         team_pk = self.kwargs["pk"]

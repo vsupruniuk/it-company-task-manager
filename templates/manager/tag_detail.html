@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block content %}
-
   <div class="row">
     <div class="col-xl-12">
       <div class="card Recent-Users p-3">
@@ -12,7 +11,8 @@
         <h5>Last update date: {{ tag.updated_at }}</h5>
         <h5 class="mb-5">Related project: {{ tag.project.name }}</h5>
       </div>
+
+      <a href="{% url "manager:tag-list" pk=tag.project.pk %}" class="btn btn-danger">Back</a>
     </div>
   </div>
-
 {% endblock content %}

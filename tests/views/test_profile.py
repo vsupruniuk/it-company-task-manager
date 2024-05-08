@@ -7,7 +7,7 @@ class PublicProfileViewTests(TestCase):
     def setUp(self) -> None:
         self.url = reverse("profile")
 
-    def test_login_required(self) -> None:
+    def test_profile_login_required(self) -> None:
         res = self.client.get(self.url)
 
         self.assertEqual(res.status_code, 302)
@@ -21,6 +21,7 @@ class PrivateProfileViewTests(TestCase):
             first_name="Admin",
             last_name="User",
             username="admin",
+            email="admin@mail.com",
             password="Qwerty12345!",
         )
 

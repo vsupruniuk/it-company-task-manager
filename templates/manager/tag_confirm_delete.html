@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block content %}
-
   <div class="row">
     <div class="col-xl-12">
       <div class="card Recent-Users p-3">
@@ -12,10 +11,9 @@
           {% csrf_token %}
 
           <button type="submit" class="btn btn-danger">Yes</button>
-          <a href="{% url "manager:tag-list" pk=project_id %}" class="btn btn-outline-primary">No</a>
+          <a href="{% url "manager:tag-list" pk=project.pk %}" class="btn btn-outline-primary">No</a>
         </form>
       </div>
     </div>
   </div>
-
 {% endblock content %}

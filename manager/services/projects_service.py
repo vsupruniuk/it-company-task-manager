@@ -46,3 +46,7 @@ def get_projects_with_tasks(project_name: str | None) -> QuerySet[Project]:
         projects = projects.filter(name__icontains=project_name)
 
     return projects
+
+
+def get_project_by_id(project_id) -> Project:
+    return Project.objects.get(id=project_id)

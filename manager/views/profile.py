@@ -11,7 +11,7 @@ def profile(request: HttpRequest) -> HttpResponse:
 
     if request.method == "POST":
         user = update_user(
-            request.user.id,
+            user_id=request.user.id,
             email=request.POST.get("email"),
             username=request.POST.get("username"),
             first_name=request.POST.get("first_name"),

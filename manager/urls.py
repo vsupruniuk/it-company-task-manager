@@ -63,39 +63,32 @@ urlpatterns = [
         name="task-create",
     ),
     path(
-        "projects/<int:pk>/tasks/<int:id>/",
+        "tasks/<int:pk>/",
         TaskDetailView.as_view(),
         name="task-detail",
     ),
     path(
-        "projects/<int:pk>/tasks/<int:id>/update/",
+        "tasks/<int:pk>/update/",
         TaskUpdateView.as_view(),
         name="task-update",
     ),
     path(
-        "projects/<int:pk>/tasks/<int:id>/delete/",
+        "tasks/<int:pk>/delete/",
         TaskDeleteView.as_view(),
         name="task-delete",
     ),
     path("projects/<int:pk>/tags/", TagListView.as_view(), name="tag-list"),
-    path(
-        "projects/<int:pk>/tags/<int:id>/", TagDetailView.as_view(), name="tag-detail"
-    ),
     path("projects/<int:pk>/tags/create/", TagCreateView.as_view(), name="tag-create"),
+    path("tags/<int:pk>/", TagDetailView.as_view(), name="tag-detail"),
     path(
-        "projects/<int:pk>/tags/<int:id>/update/",
+        "tags/<int:pk>/update/",
         TagUpdateView.as_view(),
         name="tag-update",
     ),
     path(
-        "projects/<int:pk>/tags/<int:id>/delete/",
+        "tags/<int:pk>/delete/",
         TagDeleteView.as_view(),
         name="tag-delete",
-    ),
-    path(
-        "projects/<int:pk>/task-types/create/",
-        TaskTypeCreateView.as_view(),
-        name="task-type-create",
     ),
     path(
         "projects/<int:pk>/task-types/",
@@ -103,17 +96,22 @@ urlpatterns = [
         name="task-type-list",
     ),
     path(
-        "projects/<int:pk>/task-types/<int:id>/",
+        "projects/<int:pk>/task-types/create/",
+        TaskTypeCreateView.as_view(),
+        name="task-type-create",
+    ),
+    path(
+        "task-types/<int:pk>/",
         TaskTypeDetailView.as_view(),
         name="task-type-detail",
     ),
     path(
-        "projects/<int:pk>/task-types/<int:id>/update/",
+        "task-types/<int:pk>/update/",
         TaskTypeUpdateView.as_view(),
         name="task-type-update",
     ),
     path(
-        "projects/<int:pk>/task-types/<int:id>/delete/",
+        "task-types/<int:pk>/delete/",
         TaskTypeDeleteView.as_view(),
         name="task-type-delete",
     ),
@@ -124,22 +122,22 @@ urlpatterns = [
     path("teams/<int:pk>/delete/", TeamDeleteView.as_view(), name="team-delete"),
     path("teams/<int:pk>/positions/", PositionListView.as_view(), name="position-list"),
     path(
-        "teams/<int:pk>/positions/<int:id>/",
-        PositionDetailView.as_view(),
-        name="position-detail",
-    ),
-    path(
         "teams/<int:pk>/positions/create/",
         PositionCreateView.as_view(),
         name="position-create",
     ),
     path(
-        "teams/<int:pk>/positions/<int:id>/update/",
+        "positions/<int:pk>/",
+        PositionDetailView.as_view(),
+        name="position-detail",
+    ),
+    path(
+        "positions/<int:pk>/update/",
         PositionUpdateView.as_view(),
         name="position-update",
     ),
     path(
-        "teams/<int:pk>/positions/<int:id>/delete/",
+        "positions/<int:pk>/delete/",
         PositionDeleteView.as_view(),
         name="position-delete",
     ),

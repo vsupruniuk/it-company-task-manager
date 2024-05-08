@@ -5,13 +5,20 @@ from django.views import generic
 
 from manager.forms import TaskTypeForm
 from manager.models import TaskType
-from manager.services import create_task_type_for_project
+from manager.services import create_task_type_for_project, get_project_by_id
 
 
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
     template_name = "manager/task_type_form.html"
     form_class = TaskTypeForm
+
+    def get_context_data(self, *, object_list=None, **kwargs) -> dict:
+        context = super(TaskTypeCreateView, self).get_context_data(**kwargs)
+
+        context["project"] = get_project_by_id(self.kwargs["pk"])
+
+        return context
 
     def get_success_url(self) -> str:
         project_pk = self.kwargs["pk"]

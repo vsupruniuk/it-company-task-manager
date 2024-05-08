@@ -2,83 +2,86 @@
 {% load static %}
 
 {% block content %}
-
   <div class="row">
     <div class="col-xl-12">
-      <a href="{% url "manager:task-create" pk=project_id %}" class="btn btn-primary mb-3">Add task</a>
+      <h2 class="mb-4">{{ project.name }} tasks</h2>
+      <a href="{% url "manager:task-create" pk=project.pk %}" class="btn btn-primary mb-3">Add task</a>
 
       <div class="card Recent-Users">
         <div class="card-block px-0 py-3">
           <div class="table-responsive">
-            <table class="table table-hover">
-              <thead>
-              <tr>
-                <td>Name</td>
-                <td>Deadline</td>
-                <td>Completed</td>
-                <td>Assignees</td>
-                <td>Actions</td>
-              </tr>
-              </thead>
-
-              <tbody>
-              {% for task in task_list %}
-                <tr class="unread">
-                  <td>
-                    <h6 class="m-0">
-                      {{ task.name }}
-                    </h6>
-                  </td>
-
-                  <td>
-                    <h6 class="mb-1">{{ task.deadline }}</h6>
-                  </td>
-
-                  <td>
-                    {% if task.is_completed %}
-                      <i class="fas fa-circle text-c-green f-10 m-r-15"></i>
-                      Completed
-                    {% else %}
-                      <i class="fas fa-circle text-c-red f-10 m-r-15"></i>
-                      Not completed
-                    {% endif %}
-                  </td>
-
-                  <td>
-                    {% if task.assignees.all %}
-                      {% for worker in task.assignees.all %}
-                        <h6>{{ worker.username }}</h6>
-                      {% endfor %}
-
-                    {% else %}
-                      <h6>No assignees yet</h6>
-                    {% endif %}
-                  </td>
-
-                  <td>
-                    <a
-                        href="{% url "manager:task-detail" pk=project_id id=task.id %}"
-                        class="label theme-bg text-white f-12"
-                    >Details</a>
-
-                    <a
-                        href="{% url "manager:task-update" pk=project_id id=task.id %}"
-                        class="label theme-bg text-white f-12"
-                    >Edit</a>
-
-                    <a
-                        href="{% url "manager:task-delete" pk=project_id id=task.id %}"
-                        class="label theme-bg2 text-white f-12"
-                    >Delete</a>
-                  </td>
+            {% if task_list %}
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Deadline</td>
+                  <td>Completed</td>
+                  <td>Assignees</td>
+                  <td>Actions</td>
                 </tr>
-              {% endfor %}
-              </tbody>
-            </table>
+                </thead>
+
+                <tbody>
+                {% for task in task_list %}
+                  <tr class="unread">
+                    <td>
+                      <h6 class="m-0">
+                        {{ task.name }}
+                      </h6>
+                    </td>
+
+                    <td>
+                      <h6 class="mb-1">{{ task.deadline }}</h6>
+                    </td>
+
+                    <td>
+                      {% if task.is_completed %}
+                        <i class="fas fa-circle text-c-green f-10 m-r-15"></i>
+                        Completed
+                      {% else %}
+                        <i class="fas fa-circle text-c-red f-10 m-r-15"></i>
+                        Not completed
+                      {% endif %}
+                    </td>
+
+                    <td>
+                      {% if task.assignees.all %}
+                        {% for worker in task.assignees.all %}
+                          <h6>{{ worker.username }}</h6>
+                        {% endfor %}
+
+                      {% else %}
+                        <h6>No assignees yet</h6>
+                      {% endif %}
+                    </td>
+
+                    <td>
+                      <a
+                          href="{% url "manager:task-detail" pk=task.pk %}"
+                          class="label theme-bg text-white f-12"
+                      >Details</a>
+
+                      <a
+                          href="{% url "manager:task-update" pk=task.pk %}"
+                          class="label theme-bg text-white f-12"
+                      >Edit</a>
+
+                      <a
+                          href="{% url "manager:task-delete" pk=task.pk %}"
+                          class="label theme-bg2 text-white f-12"
+                      >Delete</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+              <h3 class="text-center">No tasks</h3>
+            {% endif %}
           </div>
         </div>
       </div>
     </div>
   </div>
-
 {% endblock content %}

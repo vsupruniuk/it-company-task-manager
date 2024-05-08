@@ -3,13 +3,12 @@ from django.db.models import QuerySet
 from django.views import generic
 
 from manager.models import Task
-from manager.services import get_project_tasks
+from manager.services import get_project_tasks, get_project_by_id
 
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     paginate_by = 10
-    context_object_name = "task_list"
 
     def get_context_data(self, *, object_list=None, **kwargs) -> dict:
         context = super(TaskListView, self).get_context_data(**kwargs)
@@ -19,7 +18,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         context["search_name"] = "task-name"
         context["search_value"] = search_value if search_value else ""
         context["search_placeholder"] = "Search task"
-        context["project_id"] = self.kwargs["pk"]
+        context["project"] = get_project_by_id(self.kwargs["pk"])
 
         return context
 

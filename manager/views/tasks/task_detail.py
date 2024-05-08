@@ -9,4 +9,4 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
 
     def get_object(self, queryset=None) -> Task:
-        return get_full_task(self.kwargs["id"])
+        return get_full_task(self.kwargs["pk"])

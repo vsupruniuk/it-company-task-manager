@@ -3,7 +3,7 @@ from django.db.models import QuerySet
 from django.views import generic
 
 from manager.models import TaskType
-from manager.services import get_project_task_types
+from manager.services import get_project_task_types, get_project_by_id
 
 
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
@@ -20,7 +20,7 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
         context["search_name"] = "task-type-name"
         context["search_value"] = search_value if search_value else ""
         context["search_placeholder"] = "Search task types"
-        context["project_id"] = self.kwargs["pk"]
+        context["project"] = get_project_by_id(self.kwargs["pk"])
 
         return context
 

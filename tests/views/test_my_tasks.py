@@ -12,7 +12,7 @@ class PublicMyTasksViewTests(TestCase):
     def setUp(self) -> None:
         self.url = reverse("manager:my-tasks")
 
-    def test_login_required(self) -> None:
+    def test_my_tasks_login_required(self) -> None:
         res = self.client.get(self.url)
 
         self.assertEqual(res.status_code, 302)
@@ -31,93 +31,93 @@ class PrivateMyTasksViewTests(TestCase):
 
         self.client.force_login(self.user)
 
-        self.project = Project.objects.create(
+        project = Project.objects.create(
             name="YouTube video hosting",
             start_date=datetime(2024, 1, 1),
             budget=100_000_000,
         )
 
-        self.task_create_db_structure = Task.objects.create(
+        task_create_db_structure = Task.objects.create(
             name="Create DB structure",
             deadline=datetime(2024, 4, 30),
             priority="High",
-            project=self.project,
+            project=project,
             is_completed=True,
         )
-        self.task_create_design = Task.objects.create(
+        task_create_design = Task.objects.create(
             name="Create design",
             deadline=datetime(2024, 4, 30),
             priority="High",
-            project=self.project,
+            project=project,
             is_completed=True,
         )
-        self.task_create_frontend_architecture = Task.objects.create(
+        task_create_frontend_architecture = Task.objects.create(
             name="Create frontend architecture",
             deadline=datetime(2024, 4, 30),
             priority="High",
-            project=self.project,
+            project=project,
             is_completed=True,
         )
-        self.task_create_backend_architecture = Task.objects.create(
+        task_create_backend_architecture = Task.objects.create(
             name="Create backend architecture",
             deadline=datetime(2024, 4, 30),
             priority="High",
-            project=self.project,
+            project=project,
         )
-        self.task_implement_registration = Task.objects.create(
+        task_implement_registration = Task.objects.create(
             name="Implement registration",
             deadline=datetime(2024, 4, 30),
             priority="High",
-            project=self.project,
+            project=project,
         )
-        self.task_implement_authorization = Task.objects.create(
+        task_implement_authorization = Task.objects.create(
             name="Implement authorization",
             deadline=datetime(2024, 4, 30),
             priority="High",
-            project=self.project,
+            project=project,
         )
-        self.task_implement_video_upload = Task.objects.create(
+        task_implement_video_upload = Task.objects.create(
             name="Implement video upload",
             deadline=datetime(2024, 4, 30),
             priority="High",
-            project=self.project,
+            project=project,
         )
-        self.task_implement_video_streaming = Task.objects.create(
+        task_implement_video_streaming = Task.objects.create(
             name="Implement video streaming",
             deadline=datetime(2024, 4, 30),
             priority="High",
-            project=self.project,
+            project=project,
         )
-        self.task_implement_channel_creation = Task.objects.create(
+        task_implement_channel_creation = Task.objects.create(
             name="Implement channel creation",
             deadline=datetime(2024, 4, 30),
             priority="High",
-            project=self.project,
+            project=project,
         )
-        self.task_implement_subscription = Task.objects.create(
+        task_implement_subscription = Task.objects.create(
             name="Implement subscription",
             deadline=datetime(2024, 4, 30),
             priority="High",
-            project=self.project,
+            project=project,
         )
-        self.task_implement_video_deleting = Task.objects.create(
+        task_implement_video_deleting = Task.objects.create(
             name="Implement video deleting",
             deadline=datetime(2024, 4, 30),
             priority="High",
-            project=self.project,
+            project=project,
         )
 
-        self.task_create_db_structure.assignees.set((self.user,))
-        self.task_create_design.assignees.set((self.user,))
-        self.task_create_frontend_architecture.assignees.set((self.user,))
-        self.task_create_backend_architecture.assignees.set((self.user,))
-        self.task_implement_registration.assignees.set((self.user,))
-        self.task_implement_authorization.assignees.set((self.user,))
-        self.task_implement_video_upload.assignees.set((self.user,))
-        self.task_implement_video_streaming.assignees.set((self.user,))
-        self.task_implement_channel_creation.assignees.set((self.user,))
-        self.task_implement_subscription.assignees.set((self.user,))
-        self.task_implement_video_deleting.assignees.set((self.user,))
+        task_create_db_structure.assignees.set((self.user,))
+        task_create_design.assignees.set((self.user,))
+        task_create_frontend_architecture.assignees.set((self.user,))
+        task_create_backend_architecture.assignees.set((self.user,))
+        task_implement_registration.assignees.set((self.user,))
+        task_implement_authorization.assignees.set((self.user,))
+        task_implement_video_upload.assignees.set((self.user,))
+        task_implement_video_streaming.assignees.set((self.user,))
+        task_implement_channel_creation.assignees.set((self.user,))
+        task_implement_subscription.assignees.set((self.user,))
+        task_implement_video_deleting.assignees.set((self.user,))
 
     def test_should_display_list_of_user_tasks(self) -> None:
         tasks = get_user_tasks(self.user)

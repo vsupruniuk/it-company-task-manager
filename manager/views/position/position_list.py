@@ -3,7 +3,7 @@ from django.db.models import QuerySet
 from django.views import generic
 
 from manager.models import Position
-from manager.services import get_team_positions
+from manager.services import get_team_positions, get_team
 
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
@@ -19,7 +19,7 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
         context["search_name"] = "position-name"
         context["search_value"] = search_value if search_value else ""
         context["search_placeholder"] = "Search position"
-        context["team_id"] = self.kwargs["pk"]
+        context["team"] = get_team(self.kwargs["pk"])
 
         return context
 

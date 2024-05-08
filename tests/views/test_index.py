@@ -12,7 +12,7 @@ class PublicIndexViewTests(TestCase):
     def setUp(self) -> None:
         self.url = reverse("manager:index")
 
-    def test_login_required(self) -> None:
+    def test_index_login_required(self) -> None:
         res = self.client.get(self.url)
 
         self.assertEqual(res.status_code, 302)
@@ -31,134 +31,134 @@ class PrivateIndexViewTests(TestCase):
 
         self.client.force_login(self.user)
 
-        self.project_youtube = Project.objects.create(
+        project_youtube = Project.objects.create(
             name="YouTube", start_date=datetime(2024, 1, 1), budget=100_000_000
         )
-        self.project_twitch = Project.objects.create(
+        project_twitch = Project.objects.create(
             name="Twitch", start_date=datetime(2024, 1, 1), budget=150_000_000
         )
-        self.project_instagram = Project.objects.create(
+        project_instagram = Project.objects.create(
             name="Instagram", start_date=datetime(2024, 1, 1), budget=125_000_000
         )
-        self.project_facebook = Project.objects.create(
+        project_facebook = Project.objects.create(
             name="Facebook", start_date=datetime(2024, 1, 1), budget=200_000_000
         )
-        self.project_whatsapp = Project.objects.create(
+        project_whatsapp = Project.objects.create(
             name="WhatsApp", start_date=datetime(2024, 1, 1), budget=75_000_000
         )
-        self.project_slack = Project.objects.create(
+        project_slack = Project.objects.create(
             name="Slack", start_date=datetime(2024, 1, 1), budget=500_000_000
         )
 
-        self.worker_tony = get_user_model().objects.create(
+        worker_tony = get_user_model().objects.create(
             first_name="Tony",
             last_name="Stark",
             username="t.stark",
             password="Qwerty12345!",
         )
-        self.worker_bruce = get_user_model().objects.create(
+        worker_bruce = get_user_model().objects.create(
             first_name="Bruce",
             last_name="Banner",
             username="b.banner",
             password="Qwerty12345!",
         )
-        self.worker_thor = get_user_model().objects.create(
+        worker_thor = get_user_model().objects.create(
             first_name="Thor",
             last_name="Odinson",
             username="t.odinson",
             password="Qwerty12345!",
         )
-        self.worker_steve = get_user_model().objects.create(
+        worker_steve = get_user_model().objects.create(
             first_name="Steve",
             last_name="Rogers",
             username="s.rogers",
             password="Qwerty12345!",
         )
 
-        self.task_youtube_deploy_db = Task.objects.create(
+        task_youtube_deploy_db = Task.objects.create(
             name="Deploy DB",
             deadline=datetime(2024, 4, 15),
-            project=self.project_youtube,
+            project=project_youtube,
         )
-        self.task_youtube_create_design = Task.objects.create(
+        task_youtube_create_design = Task.objects.create(
             name="Create design",
             deadline=datetime(2024, 4, 15),
-            project=self.project_youtube,
+            project=project_youtube,
             is_completed=True,
         )
-        self.task_twitch_deploy_db = Task.objects.create(
+        task_twitch_deploy_db = Task.objects.create(
             name="Deploy DB",
             deadline=datetime(2024, 4, 15),
-            project=self.project_twitch,
+            project=project_twitch,
         )
-        self.task_twitch_create_design = Task.objects.create(
+        task_twitch_create_design = Task.objects.create(
             name="Create design",
             deadline=datetime(2024, 4, 15),
-            project=self.project_twitch,
+            project=project_twitch,
             is_completed=True,
         )
-        self.task_instagram_deploy_db = Task.objects.create(
+        task_instagram_deploy_db = Task.objects.create(
             name="Deploy DB",
             deadline=datetime(2024, 4, 15),
-            project=self.project_instagram,
+            project=project_instagram,
         )
-        self.task_instagram_create_design = Task.objects.create(
+        task_instagram_create_design = Task.objects.create(
             name="Create design",
             deadline=datetime(2024, 4, 15),
-            project=self.project_instagram,
+            project=project_instagram,
             is_completed=True,
         )
-        self.task_facebook_deploy_db = Task.objects.create(
+        task_facebook_deploy_db = Task.objects.create(
             name="Deploy DB",
             deadline=datetime(2024, 4, 15),
-            project=self.project_facebook,
+            project=project_facebook,
         )
-        self.task_facebook_create_design = Task.objects.create(
+        task_facebook_create_design = Task.objects.create(
             name="Create design",
             deadline=datetime(2024, 4, 15),
-            project=self.project_facebook,
+            project=project_facebook,
             is_completed=True,
         )
-        self.task_whatsapp_deploy_db = Task.objects.create(
+        task_whatsapp_deploy_db = Task.objects.create(
             name="Deploy DB",
             deadline=datetime(2024, 4, 15),
-            project=self.project_whatsapp,
+            project=project_whatsapp,
         )
-        self.task_whatsapp_create_design = Task.objects.create(
+        task_whatsapp_create_design = Task.objects.create(
             name="Create design",
             deadline=datetime(2024, 4, 15),
-            project=self.project_whatsapp,
+            project=project_whatsapp,
             is_completed=True,
         )
-        self.task_slack_deploy_db = Task.objects.create(
+        task_slack_deploy_db = Task.objects.create(
             name="Deploy DB",
             deadline=datetime(2024, 4, 15),
-            project=self.project_slack,
+            project=project_slack,
         )
-        self.task_slack_create_design = Task.objects.create(
+        task_slack_create_design = Task.objects.create(
             name="Create design",
             deadline=datetime(2024, 4, 15),
-            project=self.project_slack,
+            project=project_slack,
             is_completed=True,
         )
 
-        self.task_youtube_deploy_db.assignees.set((self.worker_tony,))
-        self.task_youtube_create_design.assignees.set((self.worker_tony,))
+        task_youtube_deploy_db.assignees.set((worker_tony,))
+        task_youtube_create_design.assignees.set((worker_tony,))
 
-        self.task_twitch_deploy_db.assignees.set((self.worker_bruce,))
-        self.task_twitch_create_design.assignees.set((self.worker_bruce,))
+        task_twitch_deploy_db.assignees.set((worker_bruce,))
+        task_twitch_create_design.assignees.set((worker_bruce,))
 
-        self.task_instagram_deploy_db.assignees.set((self.worker_thor,))
-        self.task_instagram_create_design.assignees.set((self.worker_thor,))
+        task_instagram_deploy_db.assignees.set((worker_thor,))
+        task_instagram_create_design.assignees.set((worker_thor,))
 
-        self.task_facebook_deploy_db.assignees.set((self.worker_steve,))
-        self.task_facebook_create_design.assignees.set((self.worker_steve,))
+        task_facebook_deploy_db.assignees.set((worker_steve,))
+        task_facebook_create_design.assignees.set((worker_steve,))
 
-        self.task_whatsapp_deploy_db.assignees.set((self.worker_steve,))
-        self.task_whatsapp_create_design.assignees.set((self.worker_steve,))
+        task_whatsapp_deploy_db.assignees.set((worker_steve,))
+        task_whatsapp_create_design.assignees.set((worker_steve,))
 
-        self.task_slack_deploy_db.assignees.set((self.worker_tony,))
-        self.task_slack_create_design.assignees.set((self.worker_tony,))
+        task_slack_deploy_db.assignees.set((worker_tony,))
+        task_slack_create_design.assignees.set((worker_tony,))
 
     def test_should_display_list_of_projects_with_tasks(self) -> None:
         projects = get_projects_with_tasks(None)

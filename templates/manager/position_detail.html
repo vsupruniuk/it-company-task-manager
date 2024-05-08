@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block content %}
-
   <div class="row">
     <div class="col-xl-12">
       <div class="card Recent-Users p-3">
@@ -12,7 +11,8 @@
         <h5>Last update date: {{ position.updated_at }}</h5>
         <h5 class="mb-5">Related team: {{ position.team.name }}</h5>
       </div>
+
+      <a href="{% url "manager:position-list" pk=position.team.pk %}" class="btn btn-danger">Back</a>
     </div>
   </div>
-
 {% endblock content %}
