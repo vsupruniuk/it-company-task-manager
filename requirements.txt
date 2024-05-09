@@ -2,7 +2,9 @@ asgiref==3.8.1
 black==24.3.0
 click==8.1.7
 colorama==0.4.6
+crispy-bootstrap5==2024.2
 Django==5.0.3
+django-crispy-forms==2.1
 django-debug-toolbar==4.3.0
 flake8==7.0.0
 flake8-quotes==3.4.0
@@ -13,9 +15,11 @@ packaging==24.0
 pathspec==0.12.1
 pep8-naming==0.13.3
 platformdirs==4.2.0
+psycopg2==2.9.9
 pycodestyle==2.11.1
 pyflakes==3.2.0
 python-dotenv==1.0.1
 setuptools==69.2.0
 sqlparse==0.4.4
 tzdata==2024.1
+whitenoise==6.6.0
