@@ -38,7 +38,7 @@ Task Manager is a web application built with Python and Django framework. It all
    python manage.py runserver
    ```
 
-6. Access the application in your web browser at `http://localhost:8000`.
+6. Access the application in your web browser at [localhot](http://localhost:8000). Or use deployed [production](https://it-company-task-manager-44bm.onrender.com)
 
 ### Usage
 
@@ -46,5 +46,10 @@ Task Manager is a web application built with Python and Django framework. It all
    ```
    python manage.py createsuperuser
    ```
+   Or use existing user credentials:
+   ```
+   username: admin.user
+   password: Qwerty12345!
+   ```
 
-2. Log in to the app at `http://localhost:8000/accounts/login/` to manage users, teams, projects, and tasks.
+2. Log in to the app at `/accounts/login/` to manage users, teams, projects, and tasks.
