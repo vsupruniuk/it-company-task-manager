@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card Recent-Users p-3">
+        <h3 class="text-center">{{ project.name }}</h3>
+
+        <h5>Start date: {{ project.start_date }}</h5>
+        <h5 class="mb-5">Budget: {{ project.budget|intcomma }}$</h5>
+
+        <p>
+          {% if project.description %}
+            {{ project.description }}
+          {% else %}
+            No description provided
+          {% endif %}
+        </p>
+
+        <div>
+          <a href="{% url "manager:task-list" pk=project.pk %}" class="btn btn-outline-primary mt-5">Tasks</a>
+          <a href="{% url "manager:tag-list" pk=project.pk %}" class="btn btn-outline-primary mt-5">Tags</a>
+          <a href="{% url "manager:task-type-list" pk=project.pk %}" class="btn btn-outline-primary mt-5">Task types</a>
+        </div>
+      </div>
+
+      <a href="{% url "manager:project-list" %}" class="btn btn-danger">Back</a>
+    </div>
+  </div>
+{% endblock content %}

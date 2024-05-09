@@ -1,0 +1,145 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="row">
+    {% if page_obj %}
+      {% for project in page_obj %}
+        <div class="col-xl-12">
+          <div class="card Recent-Users">
+            <div class="card-header">
+              <h5>{{ project.name }}</h5>
+            </div>
+
+            <div class="card-block px-0 py-3">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <td>Assignees</td>
+                    <td>Task</td>
+                    <td>Updated at</td>
+                    <td>Completed</td>
+                    <td>Actions</td>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  {% for task in project.tasks.all|slice:":5" %}
+                    <tr class="unread">
+                      <td>
+                        <h5 class="m-0">
+                          {% if task.assignees.all %}
+                            {% for worker in task.assignees.all %}
+                              <h6>{{ worker.username }}</h6>
+                            {% endfor %}
+
+                          {% else %}
+                            <h6>No assignees yet</h6>
+                          {% endif %}
+                        </h5>
+                      </td>
+
+                      <td>
+                        <h6 class="mb-1">{{ task.name }}</h6>
+                      </td>
+
+                      <td>
+                        <h6 class="text-muted">{{ task.updated_at }}</h6>
+                      </td>
+
+                      <td>
+                        <h6 class="text-muted">
+                          {% if task.is_completed %}
+                            <i class="fas fa-circle text-c-green f-10 m-r-15"></i>
+                            Completed
+                          {% else %}
+                            <i class="fas fa-circle text-c-red f-10 m-r-15"></i>
+                            Not completed
+                          {% endif %}
+                        </h6>
+                      </td>
+
+                      <td>
+                        <a
+                            href="{% url "manager:task-update" pk=task.pk %}"
+                            class="label theme-bg text-white f-12"
+                        >Edit</a>
+
+                        <a
+                            href="{% url "manager:task-delete" pk=task.pk %}"
+                            class="label theme-bg2 text-white f-12"
+                        >Delete</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="row pl-2 pr-2">
+              <div class="col-md-6 col-xl-6">
+                <div class="card Monthly-sales">
+                  <div class="card-block">
+                    <h6 class="mb-4">Completed tasks</h6>
+                    <div class="row d-flex align-items-center">
+                      <div class="col-9">
+                        <h3 class="f-w-300 d-flex align-items-center  m-b-0">{{ project.completed_tasks_count }}</h3>
+                      </div>
+
+                      <div class="col-3 text-right">
+                        <p class="m-b-0">{{ project.completed_tasks_percentage }}%</p>
+                      </div>
+                    </div>
+
+                    <div class="progress m-t-30" style="height: 7px;">
+                      <div
+                          class="progress-bar progress-c-theme"
+                          role="progressbar"
+                          style="width: {{ project.completed_tasks_percentage }}%;"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-xl-6">
+                <div class="card Monthly-sales">
+                  <div class="card-block">
+                    <h6 class="mb-4">Uncompleted tasks</h6>
+                    <div class="row d-flex align-items-center">
+                      <div class="col-9">
+                        <h3 class="f-w-300 d-flex align-items-center m-b-0">{{ project.uncompleted_tasks_count }}</h3>
+                      </div>
+
+                      <div class="col-3 text-right">
+                        <p class="m-b-0">{{ project.uncompleted_tasks_percentage }}%</p>
+                      </div>
+                    </div>
+                    <div class="progress m-t-30" style="height: 7px;">
+                      <div
+                          class="progress-bar progress-c-theme"
+                          role="progressbar"
+                          style="width: {{ project.uncompleted_tasks_percentage }}%;"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a href="{% url "manager:task-list" pk=project.pk %}" class="nav-link w-25">
+              <button
+                  type="button"
+                  class="btn btn-outline-info"
+              >View all tasks</button>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h3 class="text-center">No projects</h3>
+    {% endif %}
+  </div>
+{% endblock content %}

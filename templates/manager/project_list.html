@@ -1,0 +1,74 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-xl-12">
+      <h2 class="mb-4">Projects</h2>
+      <a href="{% url "manager:project-create" %}" class="btn btn-primary mb-3">Add project</a>
+
+      <div class="card Recent-Users">
+        <div class="card-block px-0 py-3">
+          <div class="table-responsive">
+            {% if project_list %}
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Budget</td>
+                  <td>Start date</td>
+                  <td>Updated at</td>
+                  <td>Actions</td>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for project in project_list %}
+                  <tr class="unread">
+                    <td>
+                      <h6 class="m-0">
+                        {{ project.name }}
+                      </h6>
+                    </td>
+
+                    <td>
+                      <h6 class="mb-1">{{ project.budget }}</h6>
+                    </td>
+
+                    <td>
+                      <h6 class="text-muted">{{ project.start_date }}</h6>
+                    </td>
+
+                    <td>
+                      <h6 class="text-muted">{{ project.updated_at }}</h6>
+                    </td>
+
+                    <td>
+                      <a
+                          href="{% url "manager:project-detail" pk=project.pk %}"
+                          class="label theme-bg text-white f-12"
+                      >Details</a>
+
+                      <a
+                          href="{% url "manager:project-update" pk=project.pk %}"
+                          class="label theme-bg text-white f-12"
+                      >Edit</a>
+
+                      <a
+                          href="{% url "manager:project-delete" pk=project.pk %}"
+                          class="label theme-bg2 text-white f-12"
+                      >Delete</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+              <h3 class="text-center">No projects</h3>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

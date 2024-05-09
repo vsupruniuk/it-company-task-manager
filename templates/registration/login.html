@@ -1,0 +1,29 @@
+{% load crispy_forms_filters %}
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+  {% include 'includes/head.html' %}
+  {% block extrastyle %}
+  {% endblock extrastyle %}
+
+  {% block extrahead %}
+  {% endblock extrahead %}
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <h2>Login</h2>
+
+      <form method="post" action="{% url "login" %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <input type="hidden" name="next" value="{{ next }}" />
+
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

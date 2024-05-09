@@ -1,0 +1,65 @@
+{% load static %}
+
+<nav class="pcoded-navbar">
+  <div class="navbar-wrapper">
+    <div class="navbar-brand header-logo">
+      <a href="{% url 'manager:index' %}" class="b-brand">
+        <i class="fa-solid fa-list-check" style="color: #63E6BE;"></i>
+
+        <span class="b-title">Task Manager</span>
+      </a>
+
+      <a class="mobile-menu" id="mobile-collapse" href="javascript:">
+        <span></span>
+      </a>
+    </div>
+
+    <div class="navbar-content scroll-div">
+      <ul class="nav pcoded-inner-navbar">
+        <li class="nav-item pcoded-menu-caption">
+          <label>Navigation</label>
+        </li>
+
+        <li class="nav-item {% if 'index' in segment %}active{% endif %}">
+          <a href="{% url 'manager:index' %}" class="nav-link ">
+            <span class="pcoded-micon">
+              <i class="fa-solid fa-house" style="color: #a9b7d0;"></i>
+            </span>
+
+            <span class="pcoded-mtext">Dashboard</span>
+          </a>
+        </li>
+
+        <li class="nav-item {% if 'projects' in segment %}active{% endif %}">
+          <a href="{% url "manager:project-list" %}" class="nav-link ">
+            <span class="pcoded-micon">
+              <i class="fa-solid fa-project-diagram" style="color: #a9b7d0;"></i>
+            </span>
+
+            <span class="pcoded-mtext">Projects</span>
+          </a>
+        </li>
+
+        <li class="nav-item {% if 'teams' in segment %}active{% endif %}">
+          <a href="{% url "manager:team-list" %}" class="nav-link ">
+            <span class="pcoded-micon">
+              <i class="fa-solid fa-people-group" style="color: #a9b7d0;"></i>
+            </span>
+
+            <span class="pcoded-mtext">Teams</span>
+          </a>
+        </li>
+
+        <li class="nav-item {% if 'workers' in segment %}active{% endif %}">
+          <a href="{% url "manager:worker-list" %}" class="nav-link ">
+            <span class="pcoded-micon">
+              <i class="fa-solid fa-user" style="color: #a9b7d0;"></i>
+            </span>
+
+            <span class="pcoded-mtext">Workers</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

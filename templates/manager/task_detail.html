@@ -1,0 +1,49 @@
+{% extends 'layouts/base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card Recent-Users p-3">
+        <h3 class="text-center">{{ task.name }}</h3>
+
+        <h5>Deadline: {{ task.deadline }}</h5>
+        <h5>Task type: {{ task.task_type.name }}</h5>
+        <h5>Reporter: {{ task.reporter.first_name }} {{ task.reporter.last_name }}</h5>
+        <h5>
+          Assignees:
+          {% for assignee in task.assignees.all %}
+            {% if forloop.last %}
+              <span>{{ assignee.first_name }} {{ assignee.last_name }}</span>
+            {% else %}
+              <span>{{ assignee.first_name }} {{ assignee.last_name }},</span>
+            {% endif %}
+          {% endfor %}
+        </h5>
+        <h5>
+          Tags:
+          {% for tag in task.tags.all %}
+            {% if forloop.last %}
+              <span>{{ tag.name }}</span>
+            {% else %}
+              <span>{{ tag.name }}</span>
+            {% endif %}
+          {% endfor %}
+        </h5>
+        <h5 class="mb-5">Project: {{ task.project.name }}</h5>
+        <h5 class="mb-5">{{ task.is_completed|yesno:"Task completed,Task not completed" }}</h5>
+
+        <p>
+          {% if task.description %}
+            {{ task.description }}
+          {% else %}
+            No description provided
+          {% endif %}
+        </p>
+      </div>
+
+      <a href="{% url "manager:task-list" pk=task.project.pk %}" class="btn btn-danger">Back</a>
+    </div>
+  </div>
+{% endblock content %}
