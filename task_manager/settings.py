@@ -12,9 +12,8 @@ SECRET_KEY = os.getenv(
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
-
-INTERNAL_IPS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "it-company-task-manager-44bm.onrender.com"]
+INTERNAL_IPS = ["127.0.0.1", "localhost", "it-company-task-manager-44bm.onrender.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
