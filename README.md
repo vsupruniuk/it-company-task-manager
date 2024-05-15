@@ -2,6 +2,13 @@
 
 Task Manager is a web application built with Python and Django framework. It allows users to efficiently manage teams, projects, and tasks in an organized manner.
 
+## [Check the demo](https://it-company-task-manager-44bm.onrender.com)
+### User credentials
+   ```
+   username: admin.user
+   password: Qwerty12345!
+   ```
+
 ### Features
 
 - **User Authentication:** Secure user authentication system to ensure only authorized users can access the application.
@@ -38,18 +45,13 @@ Task Manager is a web application built with Python and Django framework. It all
    python manage.py runserver
    ```
 
-6. Access the application in your web browser at [localhot](http://localhost:8000). Or use deployed [production](https://it-company-task-manager-44bm.onrender.com)
+6. Access the application in your web browser at [localhost](http://localhost:8000). Or use deployed [production]()
 
 ### Usage
 
 1. Create a superuser to access the Django admin panel:
    ```
    python manage.py createsuperuser
-   ```
-   Or use existing user credentials:
-   ```
-   username: admin.user
-   password: Qwerty12345!
    ```
 
 2. Log in to the app at `/accounts/login/` to manage users, teams, projects, and tasks.
